@@ -16,12 +16,14 @@ const startBranch: Branch = $ref({
   },
   length: Math.random() * 10 + 20,
   theta: -Math.PI / 2,
+  width: Math.random() + 1,
 })
 
 const pendingTasks: Function[] = []
 
 function init() {
   ctx.strokeStyle = "rgba(169, 169, 169, 0.8)"
+  ctx.lineWidth = startBranch.width
   step(startBranch)
 }
 
@@ -36,6 +38,7 @@ function step(b: Branch, depth = 0) {
           start: end,
           length: b.length + (Math.random() * 10 - 5),
           theta: b.theta - 0.3 * Math.random(),
+          width: b.width,
         },
         depth + 1,
       ),
@@ -49,6 +52,7 @@ function step(b: Branch, depth = 0) {
           start: end,
           length: b.length + (Math.random() * 10 - 5),
           theta: b.theta + 0.3 * Math.random(),
+          width: b.width,
         },
         depth + 1,
       ),

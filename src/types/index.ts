@@ -19,5 +19,5 @@ export interface Branch {
   /**
    * 线宽
    */
-  width?: number
+  width: number
 }
