@@ -1,0 +1,36 @@
+{
+  "name": "drawing",
+  "private": true,
+  "packageManager": "pnpm@6.32.3",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite --port 3333 --open",
+    "typecheck": "vue-tsc --noEmit",
+    "preview": "vite preview",
+    "test": "vitest",
+    "prettier": "prettier --write ."
+  },
+  "dependencies": {
+    "@vueuse/core": "^8.1.2",
+    "vue": "^3.2.31",
+    "vue-router": "^4.0.14"
+  },
+  "devDependencies": {
+    "@iconify-json/carbon": "^1.1.2",
+    "@types/node": "^17.0.21",
+    "@unocss/reset": "^0.29.4",
+    "@vitejs/plugin-vue": "^2.2.4",
+    "@vue/test-utils": "^2.0.0-rc.17",
+    "jsdom": "^19.0.0",
+    "pnpm": "^6.32.3",
+    "prettier": "^2.6.0",
+    "typescript": "^4.6.2",
+    "unocss": "^0.29.4",
+    "unplugin-auto-import": "^0.6.6",
+    "unplugin-vue-components": "^0.18.3",
+    "vite": "^2.8.6",
+    "vite-plugin-pages": "^0.22.0",
+    "vitest": "^0.7.6",
+    "vue-tsc": "^0.33.2-patch.1"
+  }
+}

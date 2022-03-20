@@ -1,0 +1,7 @@
+{
+  "cSpell.words": ["Vitesse"],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "files.associations": {
+    "*.css": "postcss"
+  }
+}
