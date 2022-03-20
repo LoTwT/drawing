@@ -29,6 +29,8 @@ interface Branch {
   width?: number
 }
 
+const pendingTasks: Function[] = []
+
 function init() {
   ctx.strokeStyle = "rgba(169, 169, 169, 0.8)"
 
@@ -49,26 +51,54 @@ function lineTo(p1: Point, p2: Point) {
   ctx.stroke()
 }
 
-function step(b: Branch) {
+function step(b: Branch, depth = 0) {
   const end = getEndPoint(b)
   drawBranch(b)
 
-  if (Math.random() < 0.5) {
-    step({
-      start: end,
-      length: b.length,
-      theta: b.theta - 0.2,
-    })
+  if (depth < 4 || Math.random() < 0.5) {
+    pendingTasks.push(() =>
+      step(
+        {
+          start: end,
+          length: b.length + (Math.random() * 10 - 5),
+          theta: b.theta - 0.3 * Math.random(),
+        },
+        depth + 1,
+      ),
+    )
   }
 
-  if (Math.random() < 0.5) {
-    step({
-      start: end,
-      length: b.length,
-      theta: b.theta + 0.2,
-    })
+  if (depth < 4 || Math.random() < 0.5) {
+    pendingTasks.push(() =>
+      step(
+        {
+          start: end,
+          length: b.length + (Math.random() * 10 - 5),
+          theta: b.theta + 0.3 * Math.random(),
+        },
+        depth + 1,
+      ),
+    )
   }
 }
+
+function frame() {
+  const tasks = [...pendingTasks]
+  pendingTasks.length = 0
+  tasks.forEach((fn) => fn())
+}
+
+let framesCount = 0
+function startFrame() {
+  // 根据 fps 绘制
+  requestAnimationFrame((time) => {
+    framesCount += 1
+    if (framesCount % 3 === 0) frame()
+    startFrame()
+  })
+}
+
+startFrame()
 
 function getEndPoint(b: Branch) {
   return {
